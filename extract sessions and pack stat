@@ -1,0 +1,22 @@
+
+file = open('res.txt', 'r')
+wfile = open('res-list.txt', 'w')
+#Lines = file.readlines()
+
+#statistic(bytes/packets/allow_err): org=237/4/1 reply=15441/13/1 tuples=2
+#serial=660d3146 tos=ff/ff app_list=0 app=0 url_cat=0
+
+for i in range(229293):
+	line = file.next()	
+	if( line [0:4] == 'stat' ) : 
+		org = line.split("/")[3]
+		reply = line.split("/")[5]
+        	line = file.next()
+		serial = line[7:15]
+		#print("for serial is "+ser+" org is : "+org+" and reply is : "+reply)
+		wfile.write(serial+" "+org+" "+reply+"\n")
+
+wfile.close()
+file.close()
+
+
